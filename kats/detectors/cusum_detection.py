@@ -347,8 +347,8 @@ class CUSUMDetector(Detector):
             raise ValueError("detect must be called first")
         assert magnitude_ratio is not None
 
-        # get number of days in historical window
-        days = (time.max() - time.min()).days
+        # get number of datapoints in historical window
+        datapoints = len(time) - (interest_window[1] - interest_window[0])
 
         # get interest window magnitude
         mag_int = self._get_time_series_magnitude(
@@ -357,12 +357,9 @@ class CUSUMDetector(Detector):
 
         comparable_mag = 0
 
-        for i in range(days):
-            start_time = time[interest_window[0]] - pd.Timedelta(f"{i}D")
-            end_time = time[interest_window[1]] - pd.Timedelta(f"{i}D")
-            start_idx = time[time == start_time].index[0]
-            end_idx = time[time == end_time].index[0]
-
+        for i in range(datapoints):
+            start_idx = interest_window[0] - i
+            end_idx =  interest_window[1] - i
             hist_int = self._get_time_series_magnitude(ts[start_idx:end_idx])
             if mag_int / hist_int >= magnitude_ratio:
                 comparable_mag += 1
