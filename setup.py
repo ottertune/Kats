@@ -17,13 +17,11 @@ with open('requirements.txt', 'r') as f:
 setup(
   name = 'kats',
   packages = find_packages(),
-  version = '0.1.0',
+  version = '0.1.3',
   license='MIT',
   description = 'kats: kit to analyze time series',
-  author = 'facebook',
-  author_email = 'iamxiaodong@fb.com',
-  url = 'https://github.com/facebookresearch/Kats',
-  download_url = 'https://github.com/facebookresearch/Kats/archive/refs/tags/v0.1.tar.gz',
+  author = 'ottertune',
+  url = 'https://github.com/ottertune/ottertune-kats',
   keywords = ['time series', 'forecasting', 'anomaly detection', 'tsfeatures', 'temporal embedding'],
   install_requires=install_requires,
   classifiers=[
