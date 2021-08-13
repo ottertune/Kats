@@ -348,7 +348,7 @@ class CUSUMDetector(Detector):
         assert magnitude_ratio is not None
 
         # get number of datapoints in historical window
-        datapoints = len(time) - (interest_window[1] - interest_window[0])
+        data_points_num = len(time) - (interest_window[1] - interest_window[0])
 
         # get interest window magnitude
         mag_int = self._get_time_series_magnitude(
@@ -357,14 +357,14 @@ class CUSUMDetector(Detector):
 
         comparable_mag = 0
 
-        for i in range(datapoints):
+        for i in range(data_points_num):
             start_idx = interest_window[0] - i
             end_idx =  interest_window[1] - i
             hist_int = self._get_time_series_magnitude(ts[start_idx:end_idx])
             if mag_int / hist_int >= magnitude_ratio:
                 comparable_mag += 1
 
-        return comparable_mag / days
+        return comparable_mag / data_points_num
 
     def _get_time_series_magnitude(self, ts: np.ndarray) -> float:
         """

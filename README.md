@@ -14,6 +14,9 @@
   </a>
 </div>
 
+## Ottertune Change
+Ottertune change the _magnitude_compare functions in kats/detetors/cumsum_detection. The original function assume there should be one day between two data points in the time series which isn't conform with ottertune change point detection scenario. We change the code so that now it doesn't make any assumption on time length between two data points.
+
 ## Description
 
 Kats is a toolkit to analyze time series data, a lightweight, easy-to-use, and generalizable framework to perform time series analysis. Time series analysis is an essential component of Data Science and Engineering work at industry, from understanding the key statistics and characteristics, detecting regressions and anomalies, to forecasting future trends. Kats aims to provide the one-stop shop for time series analysis, including detection, forecasting, feature extraction/embedding, multivariate analysis, etc.
